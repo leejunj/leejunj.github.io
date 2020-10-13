@@ -3,29 +3,29 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://leejunj.github.io/post/first-post/</loc>
+    <loc>https://leejunj.github.io/post/first-post/</loc>
     <lastmod>2020-10-13T22:30:51+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://leejunj.github.io/</loc>
-    <lastmod>2020-10-13T22:30:51+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://leejunj.github.io/post/</loc>
+    <loc>https://leejunj.github.io/</loc>
     <lastmod>2020-10-13T22:30:51+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://leejunj.github.io/categories/</loc>
+    <loc>https://leejunj.github.io/post/</loc>
+    <lastmod>2020-10-13T22:30:51+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://leejunj.github.io/tags/</loc>
+    <loc>https://leejunj.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://leejunj.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   
