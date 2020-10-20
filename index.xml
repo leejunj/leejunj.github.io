@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lee记</title>
@@ -6,10 +6,15 @@
     <description>Recent content on Lee记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Oct 2020 01:21:20 +0800</lastBuildDate>
-    
-	<atom:link href="https://leejunj.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Wed, 21 Oct 2020 01:39:23 +0800</lastBuildDate><atom:link href="https://leejunj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Third</title>
+      <link>https://leejunj.github.io/post/third/</link>
+      <pubDate>Wed, 21 Oct 2020 01:39:23 +0800</pubDate>
+      
+      <guid>https://leejunj.github.io/post/third/</guid>
+      <description>多端-Windows上管理 这是在Windows上创建的文件。</description>
+    </item>
     
     <item>
       <title>Second</title>
