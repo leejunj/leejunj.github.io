@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Lee记</title>
-    <link>https://leejunj.github.io/post/</link>
-    <description>Recent content in Posts on Lee记</description>
+    <title>Posts on Even - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on Even - A super concise theme for Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 21 Oct 2020 01:39:23 +0800</lastBuildDate><atom:link href="https://leejunj.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Wed, 21 Oct 2020 01:39:23 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Third</title>
-      <link>https://leejunj.github.io/post/third/</link>
+      <link>http://localhost:1313/post/third/</link>
       <pubDate>Wed, 21 Oct 2020 01:39:23 +0800</pubDate>
       
-      <guid>https://leejunj.github.io/post/third/</guid>
+      <guid>http://localhost:1313/post/third/</guid>
       <description>多端-Windows上管理 这是在Windows上创建的文件。</description>
     </item>
     
     <item>
       <title>Second</title>
-      <link>https://leejunj.github.io/post/second/</link>
+      <link>http://localhost:1313/post/second/</link>
       <pubDate>Tue, 20 Oct 2020 01:21:20 +0800</pubDate>
       
-      <guid>https://leejunj.github.io/post/second/</guid>
-      <description>尝试多端管理 检查下成果如何</description>
+      <guid>http://localhost:1313/post/second/</guid>
+      <description>尝试多端管理 检查下成果如何 测试mermaid图 classDiagram Animal 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 classDiagram Animal &amp;lt;|-- Duck Animal &amp;lt;|-- Fish Animal &amp;lt;|-- Zebra Animal : +int age Animal : +String gender Animal: +isMammal() Animal: +mate() class Duck{</description>
     </item>
     
   </channel>

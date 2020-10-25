@@ -1,0 +1,103 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on Hugo Hermit</title>
+		<link>https://example.com/posts/</link>
+		<description>Recent content in Posts on Hugo Hermit</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+		<lastBuildDate>Wed, 21 Oct 2020 01:39:23 +0800</lastBuildDate>
+		<atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Third</title>
+			<link>https://example.com/posts/third/</link>
+			<pubDate>Wed, 21 Oct 2020 01:39:23 +0800</pubDate>
+			
+			<guid>https://example.com/posts/third/</guid>
+			<description>多端-Windows上管理 这是在Windows上创建的文件。</description>
+			<content type="html"><![CDATA[<h1 id="多端-windows上管理">多端-Windows上管理</h1>
+<p>这是在Windows上创建的文件。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Second</title>
+			<link>https://example.com/posts/second/</link>
+			<pubDate>Tue, 20 Oct 2020 01:21:20 +0800</pubDate>
+			
+			<guid>https://example.com/posts/second/</guid>
+			<description>尝试多端管理 检查下成果如何
+测试mermaid图
+classDiagramAnimal &amp;lt;|-- DuckAnimal &amp;lt;|-- FishAnimal &amp;lt;|-- ZebraAnimal : +int ageAnimal : +String genderAnimal: +isMammal()Animal: +mate()class Duck{+String beakColor+swim()+quack()}class Fish{-int sizeInFeet-canEat()}class Zebra{+bool is_wild+run()}classDiagramAnimal &amp;lt;|-- DuckAnimal &amp;lt;|-- FishAnimal &amp;lt;|-- ZebraAnimal : +int ageAnimal : +String genderAnimal: +isMammal()Animal: +mate()class Duck{+String beakColor+swim()+quack()}class Fish{-int sizeInFeet-canEat()}class Zebra{+bool is_wild+run()}journeytitle My working daysection Go to workMake tea: 5: MeGo upstairs: 3: MeDo work: 1: Me, Catsection Go homeGo downstairs: 5: MeSit down: 5: MestateDiagram-v2[*] --&amp;gt; StillStill --&amp;gt; [*]Still --&amp;gt; MovingMoving --&amp;gt; StillMoving --&amp;gt; CrashCrash --&amp;gt; [*]测试代码</description>
+			<content type="html"><![CDATA[<h1 id="尝试多端管理">尝试多端管理</h1>
+<p>检查下成果如何</p>
+<p>测试mermaid图</p>
+<pre><code class="language-mermaid" data-lang="mermaid">classDiagram
+    Animal &lt;|-- Duck
+    Animal &lt;|-- Fish
+    Animal &lt;|-- Zebra
+    Animal : +int age
+    Animal : +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck{
+        +String beakColor
+        +swim()
+        +quack()
+    }
+    class Fish{
+        -int sizeInFeet
+        -canEat()
+    }
+    class Zebra{
+        +bool is_wild
+        +run()
+    }
+</code></pre><pre><code class="language-mermaid" data-lang="mermaid">classDiagram
+    Animal &lt;|-- Duck
+    Animal &lt;|-- Fish
+    Animal &lt;|-- Zebra
+    Animal : +int age
+    Animal : +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck{
+        +String beakColor
+        +swim()
+        +quack()
+    }
+    class Fish{
+        -int sizeInFeet
+        -canEat()
+    }
+    class Zebra{
+        +bool is_wild
+        +run()
+    }
+</code></pre><pre><code class="language-mermaid" data-lang="mermaid">journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+</code></pre><pre><code class="language-mermaid" data-lang="mermaid">stateDiagram-v2
+    [*] --&gt; Still
+    Still --&gt; [*]
+
+    Still --&gt; Moving
+    Moving --&gt; Still
+    Moving --&gt; Crash
+    Crash --&gt; [*]
+</code></pre><p>测试代码</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">6</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>]]></content>
+		</item>
+		
+	</channel>
+</rss>
