@@ -6,12 +6,6 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-<<<<<<< HEAD
-		<lastBuildDate>Wed, 21 Oct 2020 01:39:23 +0800</lastBuildDate>
-		<atom:link href="https://leejunj.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-		
-		<item>
-=======
 		<lastBuildDate>Fri, 05 Mar 2021 00:24:19 +0800</lastBuildDate>
 		<atom:link href="https://leejunj.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
 		
@@ -194,21 +188,14 @@
 		</item>
 		
 		<item>
->>>>>>> add Foldable
 			<title>Third</title>
 			<link>https://leejunj.github.io/posts/third/</link>
 			<pubDate>Wed, 21 Oct 2020 01:39:23 +0800</pubDate>
 			
 			<guid>https://leejunj.github.io/posts/third/</guid>
-<<<<<<< HEAD
-			<description>多端-Windows上管理 这是在Windows上创建的文件。</description>
+			<description>多端-Windows上管理 这是在Windows上创建的文件。。。==</description>
 			<content type="html"><![CDATA[<h1 id="多端-windows上管理">多端-Windows上管理</h1>
-<p>这是在Windows上创建的文件。</p>
-=======
-			<description>多端-Windows上管理 这是在Windows上创建的文件。。。</description>
-			<content type="html"><![CDATA[<h1 id="多端-windows上管理">多端-Windows上管理</h1>
-<p>这是在Windows上创建的文件。。。</p>
->>>>>>> add Foldable
+<p>这是在Windows上创建的文件。。。==</p>
 ]]></content>
 		</item>
 		

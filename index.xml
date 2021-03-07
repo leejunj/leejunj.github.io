@@ -7,9 +7,6 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-<<<<<<< HEAD
-    <lastBuildDate>Wed, 21 Oct 2020 01:39:23 +0800</lastBuildDate><atom:link href="https://leejunj.github.io/index.xml" rel="self" type="application/rss+xml" />
-=======
     <lastBuildDate>Fri, 05 Mar 2021 00:24:19 +0800</lastBuildDate><atom:link href="https://leejunj.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Foldable</title>
@@ -35,18 +32,13 @@
  2.2.2 资源限定符-适配实操 对于折叠屏设备可以准备如下几组资源（具体限定符视情况而定，下面是假定用500dp区分展开后的折叠屏与常规屏）：</description>
     </item>
     
->>>>>>> add Foldable
     <item>
       <title>Third</title>
       <link>https://leejunj.github.io/posts/third/</link>
       <pubDate>Wed, 21 Oct 2020 01:39:23 +0800</pubDate>
       
       <guid>https://leejunj.github.io/posts/third/</guid>
-<<<<<<< HEAD
-      <description>多端-Windows上管理 这是在Windows上创建的文件。</description>
-=======
-      <description>多端-Windows上管理 这是在Windows上创建的文件。。。</description>
->>>>>>> add Foldable
+      <description>多端-Windows上管理 这是在Windows上创建的文件。。。==</description>
     </item>
     
     <item>
