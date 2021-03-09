@@ -7,29 +7,25 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
-
 <meta itemprop="name" content="Foldable">
 <meta itemprop="description" content="Foldable手机适配 0. 前言 这篇文章主要针对折叠屏(包括内折叠和外折叠)这一分类的适配做经验分享，如果时间充裕建议完整看下这篇文章和最后附录中给出的文章，如果时间不充裕，想要找到某个具体问题的解决方案可以直接看2. 适配手段环节。
 1. 概念映射 1.1 手机变革新战场 虽然手机屏幕在越做越大的风潮后看似创意枯竭，但近几年市场上杀出的几款非直板屏手机让用户看到了久违的创意，也让应用开发者们陷入了痛并快乐的复杂状态。
 自2019年至今，已有三星、华为、摩托罗拉、LG等国内外厂商率先杀入特殊屏幕手机领域，而各家设计的屏幕方案又不尽相同。
 1.2 纷繁的屏幕方案 观察已经投入量产的机型与曝光将于2021年量产的机型，看似类别眼花缭乱，但也能总结出几个纬度来归纳这些方案。
- 折叠屏  内折屏:内折屏还可再根据折叠方向分成上下折叠与左右折叠，而且有些内折屏手机还配备一个外屏，代表机型有三星Z Fold2、三星Z Flip、Moto Razr。 外折屏:外折屏在折叠后屏幕在外，代表机型有华为Mate X。  双屏:这里的双屏是指由两块尺寸相近的屏幕像展开书本的左右两面一样连接的设备，与内折屏的区别在于卷轴处不连接屏幕，代表机型有微软Surface Duo、LG G8X ThinQ。 卷轴屏:让小屏幕向展开画卷一般延伸的屏幕，网传VIVO会在2021年推出量产款。 其他:还有一些很特殊的机型，虽然也可归入以上的某种类型，但因为特性的突出决定归入其他，包括多向折叠的TCL Trifold还有双屏且能旋转的LG Wing，这些机型对于适配者而言想要充分利用硬件的特殊交互性是比较难的。  1.3 应用层面的化繁为简 可能有些开发者看到以上总结了这么多纬度会担心App的适配成本会太大，其实大可不必，因为以上很多概念到了应用层面是感知不到的，准确地说这些用户感知的特性会在应用层面被映射成别的概念。
+ 折叠屏  内折屏:内折屏还可再根据折叠方向分成上下折叠与左右折叠，而且有些内折屏手机还配备一个外屏，代表机型有三星Z Fold2、三星Z Flip、Moto Razr。 外折屏:外折屏在折叠后屏幕在外，代表机型有华为Mate X。   双屏:这里的双屏是指由两块尺寸相近的屏幕像展开书本的左右两面一样连接的设备，与内折屏的区别在于卷轴处不连接屏幕，代表机型有微软Surface Duo、LG G8X ThinQ。 卷轴屏:让小屏幕向展开画卷一般延伸的屏幕，网传VIVO会在2021年推出量产款。 其他:还有一些很特殊的机型，虽然也可归入以上的某种类型，但因为特性的突出决定归入其他，包括多向折叠的TCL Trifold还有双屏且能旋转的LG Wing，这些机型对于适配者而言想要充分利用硬件的特殊交互性是比较难的。  1.3 应用层面的化繁为简 可能有些开发者看到以上总结了这么多纬度会担心App的适配成本会太大，其实大可不必，因为以上很多概念到了应用层面是感知不到的，准确地说这些用户感知的特性会在应用层面被映射成别的概念。
 鉴于现在的内地手机市场中已经发售的特殊屏手机主要以华为与三星这两家的折叠屏手机为主，所以接下来的内容将针对折叠屏这一领域做讲解。
 1.3.1 折叠屏？大屏幕？ 虽然在用户角度来看展开的折叠屏跟常见直板屏幕很不一样，但在应用层面不论是内折叠屏幕还是外折叠屏幕都是大号屏幕，跟直板屏幕的差异只是尺寸不同而已，同理，折叠后用于显示的屏幕对应用来说就是尺寸小一点的屏幕罢了。
 1.3.2 折叠？切换屏幕？ 折叠屏幕给用户的亮点除了超大的显示尺寸外，就是屏幕可折叠的操作方式。
 虽然折叠屏还可细分成内折屏和外折屏，但到了应用层面就无感知了，即发生折叠对应用而言只是屏幕尺寸发生了变化。
  华为Mate X外折叠与三星Z Fold2内折叠有一点明显的差异在于物理屏幕数量的不同，在发生折叠行为时内折设备会发生物理屏幕的显示切换，即大号的内屏会关闭，转而激活小号的外屏继续进行内容显示，而外折设备会让屏幕从完整显示变成半屏显示。但以上差异在应用层面也是无感知的，因为应用层的屏幕概念是当前设备用于显示的那个屏幕，至于这个应用显示的屏幕是不是一块物理屏幕就不关心了。
-可能有的适配者想通过监听折叠角度的变化做一些特殊的效果，但截止安卓11的版本中我并未看到应用层面有API支持，仅在安卓11中Framwork层找到些API支持铰链监听，所以折叠角度变化这个概念在应用层面暂时没得映射。
+  可能有的适配者想通过监听折叠角度的变化做一些特殊的效果，但截止安卓11的版本中我并未看到应用层面有API支持，仅在安卓11中Framwork层找到些API支持铰链监听，所以折叠角度变化这个概念在应用层面暂时没得映射。
  2. 适配手段 折叠屏设备对适配者来说可以被看作是可随时从平板与(传统尺寸)手机状态切换的设备，相比于平板与直板手机应用来说，随时切换屏幕尺寸是适配的难点也是关键点，基于Android自身机制，即使没适配过折叠屏设备的APP也能运行在折叠屏设备上，只不过UI可能会因为过度拉伸导致不好看，下面列举几个适配手段。
 2.1 富有弹性的静态UI 最简单也最可靠的方式是在页面布局的实现时多考虑屏幕变化，利用合适的布局、控件和属性值来让静态的xml布局文件可以兼容不同尺寸的屏幕，这是应用的UI适配基本功就不在这里展开了。
 2.2 多套资源配置 2.2.1 资源限定符-概念 利用项目中res可通过配置限定符读取的特性，为大尺寸和小尺寸屏幕(可能不同尺寸的显示屏幕对应一个物理屏幕，比如在华为Mate X这种外折屏设备上)准备不同的资源文件，详细操作可以参阅应用资源概览中的配置限定符名称。
  如通过通配符准备的多套资源均无法匹配当前设备，会因为某个资源无法取到而触发运行时崩溃。
- 2.2.2 资源限定符-适配实操 对于折叠屏设备可以准备如下几组资源（具体限定符视情况而定，下面是假定用500dp区分展开后的折叠屏与常规屏）：
- res/layout-sw300dp:用于匹配常用直板手机或折叠后的小屏幕 res/layout-sw500dp:用于匹配展开后的大折叠屏 res/values-sw300dp res/values-sw500do  可以在上述目录中放置特定的资源以适配不同屏幕，之所以用sw而非w限定符是因为我们的意图是根据屏幕宽度适配，而w是根据可用空间匹配。">
-
-
-<meta itemprop="datePublished" content="2021-03-05T00:24:19&#43;08:00" />
-<meta itemprop="dateModified" content="2021-03-05T00:24:19&#43;08:00" />
+ 2.2.2 资源限定符-适配实操 对于折叠屏设备可以准备如下几组资源（具体限定符视情况而定，下面是假定用500dp区分展开后的折叠屏与常规屏）：">
+<meta itemprop="datePublished" content="2021-03-05T00:24:19+08:00" />
+<meta itemprop="dateModified" content="2021-03-05T00:24:19+08:00" />
 <meta itemprop="wordCount" content="220">
 
 
@@ -40,42 +36,40 @@
 1. 概念映射 1.1 手机变革新战场 虽然手机屏幕在越做越大的风潮后看似创意枯竭，但近几年市场上杀出的几款非直板屏手机让用户看到了久违的创意，也让应用开发者们陷入了痛并快乐的复杂状态。
 自2019年至今，已有三星、华为、摩托罗拉、LG等国内外厂商率先杀入特殊屏幕手机领域，而各家设计的屏幕方案又不尽相同。
 1.2 纷繁的屏幕方案 观察已经投入量产的机型与曝光将于2021年量产的机型，看似类别眼花缭乱，但也能总结出几个纬度来归纳这些方案。
- 折叠屏  内折屏:内折屏还可再根据折叠方向分成上下折叠与左右折叠，而且有些内折屏手机还配备一个外屏，代表机型有三星Z Fold2、三星Z Flip、Moto Razr。 外折屏:外折屏在折叠后屏幕在外，代表机型有华为Mate X。  双屏:这里的双屏是指由两块尺寸相近的屏幕像展开书本的左右两面一样连接的设备，与内折屏的区别在于卷轴处不连接屏幕，代表机型有微软Surface Duo、LG G8X ThinQ。 卷轴屏:让小屏幕向展开画卷一般延伸的屏幕，网传VIVO会在2021年推出量产款。 其他:还有一些很特殊的机型，虽然也可归入以上的某种类型，但因为特性的突出决定归入其他，包括多向折叠的TCL Trifold还有双屏且能旋转的LG Wing，这些机型对于适配者而言想要充分利用硬件的特殊交互性是比较难的。  1.3 应用层面的化繁为简 可能有些开发者看到以上总结了这么多纬度会担心App的适配成本会太大，其实大可不必，因为以上很多概念到了应用层面是感知不到的，准确地说这些用户感知的特性会在应用层面被映射成别的概念。
+ 折叠屏  内折屏:内折屏还可再根据折叠方向分成上下折叠与左右折叠，而且有些内折屏手机还配备一个外屏，代表机型有三星Z Fold2、三星Z Flip、Moto Razr。 外折屏:外折屏在折叠后屏幕在外，代表机型有华为Mate X。   双屏:这里的双屏是指由两块尺寸相近的屏幕像展开书本的左右两面一样连接的设备，与内折屏的区别在于卷轴处不连接屏幕，代表机型有微软Surface Duo、LG G8X ThinQ。 卷轴屏:让小屏幕向展开画卷一般延伸的屏幕，网传VIVO会在2021年推出量产款。 其他:还有一些很特殊的机型，虽然也可归入以上的某种类型，但因为特性的突出决定归入其他，包括多向折叠的TCL Trifold还有双屏且能旋转的LG Wing，这些机型对于适配者而言想要充分利用硬件的特殊交互性是比较难的。  1.3 应用层面的化繁为简 可能有些开发者看到以上总结了这么多纬度会担心App的适配成本会太大，其实大可不必，因为以上很多概念到了应用层面是感知不到的，准确地说这些用户感知的特性会在应用层面被映射成别的概念。
 鉴于现在的内地手机市场中已经发售的特殊屏手机主要以华为与三星这两家的折叠屏手机为主，所以接下来的内容将针对折叠屏这一领域做讲解。
 1.3.1 折叠屏？大屏幕？ 虽然在用户角度来看展开的折叠屏跟常见直板屏幕很不一样，但在应用层面不论是内折叠屏幕还是外折叠屏幕都是大号屏幕，跟直板屏幕的差异只是尺寸不同而已，同理，折叠后用于显示的屏幕对应用来说就是尺寸小一点的屏幕罢了。
 1.3.2 折叠？切换屏幕？ 折叠屏幕给用户的亮点除了超大的显示尺寸外，就是屏幕可折叠的操作方式。
 虽然折叠屏还可细分成内折屏和外折屏，但到了应用层面就无感知了，即发生折叠对应用而言只是屏幕尺寸发生了变化。
  华为Mate X外折叠与三星Z Fold2内折叠有一点明显的差异在于物理屏幕数量的不同，在发生折叠行为时内折设备会发生物理屏幕的显示切换，即大号的内屏会关闭，转而激活小号的外屏继续进行内容显示，而外折设备会让屏幕从完整显示变成半屏显示。但以上差异在应用层面也是无感知的，因为应用层的屏幕概念是当前设备用于显示的那个屏幕，至于这个应用显示的屏幕是不是一块物理屏幕就不关心了。
-可能有的适配者想通过监听折叠角度的变化做一些特殊的效果，但截止安卓11的版本中我并未看到应用层面有API支持，仅在安卓11中Framwork层找到些API支持铰链监听，所以折叠角度变化这个概念在应用层面暂时没得映射。
+  可能有的适配者想通过监听折叠角度的变化做一些特殊的效果，但截止安卓11的版本中我并未看到应用层面有API支持，仅在安卓11中Framwork层找到些API支持铰链监听，所以折叠角度变化这个概念在应用层面暂时没得映射。
  2. 适配手段 折叠屏设备对适配者来说可以被看作是可随时从平板与(传统尺寸)手机状态切换的设备，相比于平板与直板手机应用来说，随时切换屏幕尺寸是适配的难点也是关键点，基于Android自身机制，即使没适配过折叠屏设备的APP也能运行在折叠屏设备上，只不过UI可能会因为过度拉伸导致不好看，下面列举几个适配手段。
 2.1 富有弹性的静态UI 最简单也最可靠的方式是在页面布局的实现时多考虑屏幕变化，利用合适的布局、控件和属性值来让静态的xml布局文件可以兼容不同尺寸的屏幕，这是应用的UI适配基本功就不在这里展开了。
 2.2 多套资源配置 2.2.1 资源限定符-概念 利用项目中res可通过配置限定符读取的特性，为大尺寸和小尺寸屏幕(可能不同尺寸的显示屏幕对应一个物理屏幕，比如在华为Mate X这种外折屏设备上)准备不同的资源文件，详细操作可以参阅应用资源概览中的配置限定符名称。
  如通过通配符准备的多套资源均无法匹配当前设备，会因为某个资源无法取到而触发运行时崩溃。
- 2.2.2 资源限定符-适配实操 对于折叠屏设备可以准备如下几组资源（具体限定符视情况而定，下面是假定用500dp区分展开后的折叠屏与常规屏）：
- res/layout-sw300dp:用于匹配常用直板手机或折叠后的小屏幕 res/layout-sw500dp:用于匹配展开后的大折叠屏 res/values-sw300dp res/values-sw500do  可以在上述目录中放置特定的资源以适配不同屏幕，之所以用sw而非w限定符是因为我们的意图是根据屏幕宽度适配，而w是根据可用空间匹配。" />
+ 2.2.2 资源限定符-适配实操 对于折叠屏设备可以准备如下几组资源（具体限定符视情况而定，下面是假定用500dp区分展开后的折叠屏与常规屏）：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://leejunj.github.io/posts/foldable/" />
-<meta property="article:published_time" content="2021-03-05T00:24:19&#43;08:00"/>
-<meta property="article:modified_time" content="2021-03-05T00:24:19&#43;08:00"/>
+<meta property="article:published_time" content="2021-03-05T00:24:19+08:00" />
+<meta property="article:modified_time" content="2021-03-05T00:24:19+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Foldable"/>
 <meta name="twitter:description" content="Foldable手机适配 0. 前言 这篇文章主要针对折叠屏(包括内折叠和外折叠)这一分类的适配做经验分享，如果时间充裕建议完整看下这篇文章和最后附录中给出的文章，如果时间不充裕，想要找到某个具体问题的解决方案可以直接看2. 适配手段环节。
 1. 概念映射 1.1 手机变革新战场 虽然手机屏幕在越做越大的风潮后看似创意枯竭，但近几年市场上杀出的几款非直板屏手机让用户看到了久违的创意，也让应用开发者们陷入了痛并快乐的复杂状态。
 自2019年至今，已有三星、华为、摩托罗拉、LG等国内外厂商率先杀入特殊屏幕手机领域，而各家设计的屏幕方案又不尽相同。
 1.2 纷繁的屏幕方案 观察已经投入量产的机型与曝光将于2021年量产的机型，看似类别眼花缭乱，但也能总结出几个纬度来归纳这些方案。
- 折叠屏  内折屏:内折屏还可再根据折叠方向分成上下折叠与左右折叠，而且有些内折屏手机还配备一个外屏，代表机型有三星Z Fold2、三星Z Flip、Moto Razr。 外折屏:外折屏在折叠后屏幕在外，代表机型有华为Mate X。  双屏:这里的双屏是指由两块尺寸相近的屏幕像展开书本的左右两面一样连接的设备，与内折屏的区别在于卷轴处不连接屏幕，代表机型有微软Surface Duo、LG G8X ThinQ。 卷轴屏:让小屏幕向展开画卷一般延伸的屏幕，网传VIVO会在2021年推出量产款。 其他:还有一些很特殊的机型，虽然也可归入以上的某种类型，但因为特性的突出决定归入其他，包括多向折叠的TCL Trifold还有双屏且能旋转的LG Wing，这些机型对于适配者而言想要充分利用硬件的特殊交互性是比较难的。  1.3 应用层面的化繁为简 可能有些开发者看到以上总结了这么多纬度会担心App的适配成本会太大，其实大可不必，因为以上很多概念到了应用层面是感知不到的，准确地说这些用户感知的特性会在应用层面被映射成别的概念。
+ 折叠屏  内折屏:内折屏还可再根据折叠方向分成上下折叠与左右折叠，而且有些内折屏手机还配备一个外屏，代表机型有三星Z Fold2、三星Z Flip、Moto Razr。 外折屏:外折屏在折叠后屏幕在外，代表机型有华为Mate X。   双屏:这里的双屏是指由两块尺寸相近的屏幕像展开书本的左右两面一样连接的设备，与内折屏的区别在于卷轴处不连接屏幕，代表机型有微软Surface Duo、LG G8X ThinQ。 卷轴屏:让小屏幕向展开画卷一般延伸的屏幕，网传VIVO会在2021年推出量产款。 其他:还有一些很特殊的机型，虽然也可归入以上的某种类型，但因为特性的突出决定归入其他，包括多向折叠的TCL Trifold还有双屏且能旋转的LG Wing，这些机型对于适配者而言想要充分利用硬件的特殊交互性是比较难的。  1.3 应用层面的化繁为简 可能有些开发者看到以上总结了这么多纬度会担心App的适配成本会太大，其实大可不必，因为以上很多概念到了应用层面是感知不到的，准确地说这些用户感知的特性会在应用层面被映射成别的概念。
 鉴于现在的内地手机市场中已经发售的特殊屏手机主要以华为与三星这两家的折叠屏手机为主，所以接下来的内容将针对折叠屏这一领域做讲解。
 1.3.1 折叠屏？大屏幕？ 虽然在用户角度来看展开的折叠屏跟常见直板屏幕很不一样，但在应用层面不论是内折叠屏幕还是外折叠屏幕都是大号屏幕，跟直板屏幕的差异只是尺寸不同而已，同理，折叠后用于显示的屏幕对应用来说就是尺寸小一点的屏幕罢了。
 1.3.2 折叠？切换屏幕？ 折叠屏幕给用户的亮点除了超大的显示尺寸外，就是屏幕可折叠的操作方式。
 虽然折叠屏还可细分成内折屏和外折屏，但到了应用层面就无感知了，即发生折叠对应用而言只是屏幕尺寸发生了变化。
  华为Mate X外折叠与三星Z Fold2内折叠有一点明显的差异在于物理屏幕数量的不同，在发生折叠行为时内折设备会发生物理屏幕的显示切换，即大号的内屏会关闭，转而激活小号的外屏继续进行内容显示，而外折设备会让屏幕从完整显示变成半屏显示。但以上差异在应用层面也是无感知的，因为应用层的屏幕概念是当前设备用于显示的那个屏幕，至于这个应用显示的屏幕是不是一块物理屏幕就不关心了。
-可能有的适配者想通过监听折叠角度的变化做一些特殊的效果，但截止安卓11的版本中我并未看到应用层面有API支持，仅在安卓11中Framwork层找到些API支持铰链监听，所以折叠角度变化这个概念在应用层面暂时没得映射。
+  可能有的适配者想通过监听折叠角度的变化做一些特殊的效果，但截止安卓11的版本中我并未看到应用层面有API支持，仅在安卓11中Framwork层找到些API支持铰链监听，所以折叠角度变化这个概念在应用层面暂时没得映射。
  2. 适配手段 折叠屏设备对适配者来说可以被看作是可随时从平板与(传统尺寸)手机状态切换的设备，相比于平板与直板手机应用来说，随时切换屏幕尺寸是适配的难点也是关键点，基于Android自身机制，即使没适配过折叠屏设备的APP也能运行在折叠屏设备上，只不过UI可能会因为过度拉伸导致不好看，下面列举几个适配手段。
 2.1 富有弹性的静态UI 最简单也最可靠的方式是在页面布局的实现时多考虑屏幕变化，利用合适的布局、控件和属性值来让静态的xml布局文件可以兼容不同尺寸的屏幕，这是应用的UI适配基本功就不在这里展开了。
 2.2 多套资源配置 2.2.1 资源限定符-概念 利用项目中res可通过配置限定符读取的特性，为大尺寸和小尺寸屏幕(可能不同尺寸的显示屏幕对应一个物理屏幕，比如在华为Mate X这种外折屏设备上)准备不同的资源文件，详细操作可以参阅应用资源概览中的配置限定符名称。
  如通过通配符准备的多套资源均无法匹配当前设备，会因为某个资源无法取到而触发运行时崩溃。
- 2.2.2 资源限定符-适配实操 对于折叠屏设备可以准备如下几组资源（具体限定符视情况而定，下面是假定用500dp区分展开后的折叠屏与常规屏）：
- res/layout-sw300dp:用于匹配常用直板手机或折叠后的小屏幕 res/layout-sw500dp:用于匹配展开后的大折叠屏 res/values-sw300dp res/values-sw500do  可以在上述目录中放置特定的资源以适配不同屏幕，之所以用sw而非w限定符是因为我们的意图是根据屏幕宽度适配，而w是根据可用空间匹配。"/>
+ 2.2.2 资源限定符-适配实操 对于折叠屏设备可以准备如下几组资源（具体限定符视情况而定，下面是假定用500dp区分展开后的折叠屏与常规屏）："/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -85,7 +79,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Foldable</title>
-	<link rel="stylesheet" href="https://leejunj.github.io/css/style.min.01f62fff7ba9e2888ea91c3cd0097e6a3f65d5d14863514fb3886453cca80599.css" integrity="sha256-AfYv/3up4oiOqRw80Al+aj9l1dFIY1FPs4hkU8yoBZk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://leejunj.github.io/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
 	
 </head>
 
@@ -125,135 +119,91 @@
 				<h1>Foldable</h1>
 			</header>
 			<div class="content">
-				
-
-<h1 id="foldable手机适配">Foldable手机适配<a href="#foldable手机适配" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+				<h1 id="foldable手机适配">Foldable手机适配<a href="#foldable手机适配" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <h2 id="0-前言">0. 前言<a href="#0-前言" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>这篇文章主要针对折叠屏(包括内折叠和外折叠)这一分类的适配做经验分享，如果时间充裕建议完整看下这篇文章和最后附录中给出的文章，如果时间不充裕，想要找到某个具体问题的解决方案可以直接看<code>2. 适配手段</code>环节。</p>
-
 <h2 id="1-概念映射">1. 概念映射<a href="#1-概念映射" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
-<h3 id="1-1-手机变革新战场">1.1 手机变革新战场<a href="#1-1-手机变革新战场" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<p>虽然手机屏幕在越做越大的风潮后看似创意枯竭，但近几年市场上杀出的几款非直板屏手机让用户看到了久违的创意，也让应用开发者们陷入了痛并快乐的复杂状态。<br />
+<h3 id="11-手机变革新战场">1.1 手机变革新战场<a href="#11-手机变革新战场" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>虽然手机屏幕在越做越大的风潮后看似创意枯竭，但近几年市场上杀出的几款非直板屏手机让用户看到了久违的创意，也让应用开发者们陷入了痛并快乐的复杂状态。<br>
 自2019年至今，已有三星、华为、摩托罗拉、LG等国内外厂商率先杀入特殊屏幕手机领域，而各家设计的屏幕方案又不尽相同。</p>
-
-<h3 id="1-2-纷繁的屏幕方案">1.2 纷繁的屏幕方案<a href="#1-2-纷繁的屏幕方案" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="12-纷繁的屏幕方案">1.2 纷繁的屏幕方案<a href="#12-纷繁的屏幕方案" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>观察已经投入量产的机型与曝光将于2021年量产的机型，看似类别眼花缭乱，但也能总结出几个纬度来归纳这些方案。</p>
-
 <ul>
 <li>折叠屏
-
 <ul>
 <li>内折屏:内折屏还可再根据折叠方向分成上下折叠与左右折叠，而且有些内折屏手机还配备一个外屏，代表机型有三星Z Fold2、三星Z Flip、Moto Razr。</li>
 <li>外折屏:外折屏在折叠后屏幕在外，代表机型有华为Mate X。</li>
-</ul></li>
+</ul>
+</li>
 <li>双屏:这里的双屏是指由两块尺寸相近的屏幕像展开书本的左右两面一样连接的设备，与内折屏的区别在于卷轴处不连接屏幕，代表机型有微软Surface Duo、LG G8X ThinQ。</li>
 <li>卷轴屏:让小屏幕向展开画卷一般延伸的屏幕，网传VIVO会在2021年推出量产款。</li>
 <li>其他:还有一些很特殊的机型，虽然也可归入以上的某种类型，但因为特性的突出决定归入其他，包括多向折叠的TCL Trifold还有双屏且能旋转的LG Wing，这些机型对于适配者而言想要充分利用硬件的特殊交互性是比较难的。</li>
 </ul>
-
-<h3 id="1-3-应用层面的化繁为简">1.3 应用层面的化繁为简<a href="#1-3-应用层面的化繁为简" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<p>可能有些开发者看到以上总结了这么多纬度会担心App的适配成本会太大，其实大可不必，因为以上很多概念到了应用层面是感知不到的，准确地说这些用户感知的特性会在应用层面被映射成别的概念。<br />
+<h3 id="13-应用层面的化繁为简">1.3 应用层面的化繁为简<a href="#13-应用层面的化繁为简" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>可能有些开发者看到以上总结了这么多纬度会担心App的适配成本会太大，其实大可不必，因为以上很多概念到了应用层面是感知不到的，准确地说这些用户感知的特性会在应用层面被映射成别的概念。<br>
 鉴于现在的内地手机市场中已经发售的特殊屏手机主要以华为与三星这两家的折叠屏手机为主，所以接下来的内容将针对折叠屏这一领域做讲解。</p>
-
-<h4 id="1-3-1-折叠屏-大屏幕">1.3.1 折叠屏？大屏幕？<a href="#1-3-1-折叠屏-大屏幕" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="131-折叠屏大屏幕">1.3.1 折叠屏？大屏幕？<a href="#131-折叠屏大屏幕" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>虽然在用户角度来看展开的折叠屏跟常见直板屏幕很不一样，但在应用层面不论是内折叠屏幕还是外折叠屏幕都是大号屏幕，跟直板屏幕的差异只是尺寸不同而已，同理，折叠后用于显示的屏幕对应用来说就是尺寸小一点的屏幕罢了。</p>
-
-<h4 id="1-3-2-折叠-切换屏幕">1.3.2 折叠？切换屏幕？<a href="#1-3-2-折叠-切换屏幕" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
-<p>折叠屏幕给用户的亮点除了超大的显示尺寸外，就是屏幕可折叠的操作方式。<br />
+<h4 id="132-折叠切换屏幕">1.3.2 折叠？切换屏幕？<a href="#132-折叠切换屏幕" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>折叠屏幕给用户的亮点除了超大的显示尺寸外，就是屏幕可折叠的操作方式。<br>
 虽然折叠屏还可细分成内折屏和外折屏，但到了应用层面就无感知了，即发生折叠对应用而言只是屏幕尺寸发生了变化。</p>
-
 <blockquote>
 <p>华为Mate X外折叠与三星Z Fold2内折叠有一点明显的差异在于物理屏幕数量的不同，在发生折叠行为时内折设备会发生物理屏幕的显示切换，即大号的内屏会关闭，转而激活小号的外屏继续进行内容显示，而外折设备会让屏幕从完整显示变成半屏显示。但以上差异在应用层面也是无感知的，因为应用层的<code>屏幕</code>概念是当前设备用于显示的那个屏幕，至于这个应用显示的屏幕是不是一块物理屏幕就不关心了。</p>
-
+</blockquote>
+<blockquote>
 <p>可能有的适配者想通过监听折叠角度的变化做一些特殊的效果，但截止安卓11的版本中我并未看到应用层面有API支持，仅在安卓11中Framwork层找到些API支持铰链监听，所以<code>折叠角度变化</code>这个概念在应用层面暂时没得映射。</p>
 </blockquote>
-
 <h2 id="2-适配手段">2. 适配手段<a href="#2-适配手段" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>折叠屏设备对适配者来说可以被看作是可随时从平板与(传统尺寸)手机状态切换的设备，相比于平板与直板手机应用来说，随时切换屏幕尺寸是适配的难点也是关键点，基于Android自身机制，即使没适配过折叠屏设备的APP也能运行在折叠屏设备上，只不过UI可能会因为过度拉伸导致不好看，下面列举几个适配手段。</p>
-
-<h3 id="2-1-富有弹性的静态ui">2.1 富有弹性的静态UI<a href="#2-1-富有弹性的静态ui" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="21-富有弹性的静态ui">2.1 富有弹性的静态UI<a href="#21-富有弹性的静态ui" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>最简单也最可靠的方式是在页面布局的实现时多考虑屏幕变化，利用合适的布局、控件和属性值来让静态的xml布局文件可以兼容不同尺寸的屏幕，这是应用的UI适配基本功就不在这里展开了。</p>
-
-<h3 id="2-2-多套资源配置">2.2 多套资源配置<a href="#2-2-多套资源配置" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<h4 id="2-2-1-资源限定符-概念">2.2.1 资源限定符-概念<a href="#2-2-1-资源限定符-概念" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h3 id="22-多套资源配置">2.2 多套资源配置<a href="#22-多套资源配置" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h4 id="221-资源限定符-概念">2.2.1 资源限定符-概念<a href="#221-资源限定符-概念" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>利用项目中<code>res</code>可通过配置限定符读取的特性，为大尺寸和小尺寸屏幕(可能不同尺寸的显示屏幕对应一个物理屏幕，比如在华为Mate X这种外折屏设备上)准备不同的资源文件，详细操作可以参阅<a href="https://developer.android.com/guide/topics/resources/providing-resources?hl=zh-cn">应用资源概览</a>中的<code>配置限定符名称</code>。</p>
-
 <blockquote>
 <p>如通过通配符准备的多套资源均无法匹配当前设备，会因为某个资源无法取到而触发运行时崩溃。</p>
 </blockquote>
-
-<h4 id="2-2-2-资源限定符-适配实操">2.2.2 资源限定符-适配实操<a href="#2-2-2-资源限定符-适配实操" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="222-资源限定符-适配实操">2.2.2 资源限定符-适配实操<a href="#222-资源限定符-适配实操" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>对于折叠屏设备可以准备如下几组资源（具体限定符视情况而定，下面是假定用500dp区分展开后的折叠屏与常规屏）：</p>
-
 <ul>
 <li>res/layout-sw300dp:用于匹配常用直板手机或折叠后的小屏幕</li>
 <li>res/layout-sw500dp:用于匹配展开后的大折叠屏</li>
 <li>res/values-sw300dp</li>
 <li>res/values-sw500do</li>
 </ul>
-
 <p>可以在上述目录中放置特定的资源以适配不同屏幕，之所以用<code>sw</code>而非<code>w</code>限定符是因为我们的意图是根据屏幕宽度适配，而<code>w</code>是根据可用空间匹配。</p>
-
-<h4 id="2-2-3-资源限定符-适配小技巧">2.2.3 资源限定符-适配小技巧<a href="#2-2-3-资源限定符-适配小技巧" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
-<p>对于需要查询当前设备的显示屏是大屏或者小屏的情况，可以利用限定符的自动匹配机制快速实现。<br />
+<h4 id="223-资源限定符-适配小技巧">2.2.3 资源限定符-适配小技巧<a href="#223-资源限定符-适配小技巧" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>对于需要查询当前设备的显示屏是大屏或者小屏的情况，可以利用限定符的自动匹配机制快速实现。<br>
 为小屏和大屏配置对应资源，如加一个<code>values-sw300dp/config.xml</code>和<code>values-sw500do/config.xml</code>，并在两个文件中分别加入不同的标识值，如下：</p>
-
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;resources&gt;
     &lt;integer name=&quot;screen_size&quot;&gt;300&lt;/integer&gt;
 &lt;/resources&gt;
 
-</code></pre>
-
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+</code></pre><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;resources&gt;
     &lt;integer name=&quot;screen_size&quot;&gt;500&lt;/integer&gt;
 &lt;/resources&gt;
-</code></pre>
-
-<p>之后可在需要查询处用<code>getResources().getInteger(R.integer.screen_size);</code>来判断当前是大屏还是小屏了。<br />
+</code></pre><p>之后可在需要查询处用<code>getResources().getInteger(R.integer.screen_size);</code>来判断当前是大屏还是小屏了。<br>
 具体的值可以根据需要区分的屏幕尺寸档位设置，虽然仅对华为Mate X和三星Z Fold2的适配来说用两个值来区分大屏和小屏的尺寸档位就够了，但如果未来出现更多特殊的屏幕类型，可能还要多加几个档位来判断尺寸。</p>
-
-<h3 id="2-3-onconfigurationchanged-nonnull-configuration-newconfig">2.3 onConfigurationChanged(@NonNull Configuration newConfig)<a href="#2-3-onconfigurationchanged-nonnull-configuration-newconfig" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<h4 id="2-3-1-onconfigurationchanged-简述">2.3.1 onConfigurationChanged()简述<a href="#2-3-1-onconfigurationchanged-简述" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
-<p>为了监听折叠行为，我们可以利用<code>onConfiguration()</code>，这个方法在Application、Activity、Fragment和View上都能重写，根据需要选择即可。<br />
+<h3 id="23-onconfigurationchangednonnull-configuration-newconfig">2.3 onConfigurationChanged(@NonNull Configuration newConfig)<a href="#23-onconfigurationchangednonnull-configuration-newconfig" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h4 id="231-onconfigurationchanged简述">2.3.1 onConfigurationChanged()简述<a href="#231-onconfigurationchanged简述" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>为了监听折叠行为，我们可以利用<code>onConfiguration()</code>，这个方法在Application、Activity、Fragment和View上都能重写，根据需要选择即可。<br>
 <code>onConfiguration()</code>的作用是提供给开发者一个能力用于在设备状态改变时手动控制页面变化，而不执行Activity的默认重建逻辑，状态包括宽高、方向、软键盘显隐等。所以想要触发回调时我们需要先在<code>AndroidManifest.xml</code>中为特定Activity设置<code>android:configChanges=&quot;smallestScreenSize|screenLayout|screenSize&quot;</code>来明示屏幕尺寸发生变化时阻断自动的Activity重建，否则折叠行为发生时不会回调该方法。</p>
-
 <p>以下是<code>configChanges</code>的可用值，具体值的作用可看<a href="https://developer.android.com/guide/topics/manifest/activity-element#config">官网-configChanges说明</a>:</p>
-
 <pre><code>android:configChanges=[&quot;mcc&quot;, &quot;mnc&quot;, &quot;locale&quot;,
     &quot;touchscreen&quot;, &quot;keyboard&quot;, &quot;keyboardHidden&quot;,
     &quot;navigation&quot;, &quot;screenLayout&quot;, &quot;fontScale&quot;,
     &quot;uiMode&quot;, &quot;orientation&quot;, &quot;density&quot;,
     &quot;screenSize&quot;, &quot;smallestScreenSize&quot;]
-</code></pre>
-
-<blockquote>
+</code></pre><blockquote>
 <p>官方建议不要设置<code>configChanges</code>来手动控制，尽量交由系统自动控制</p>
 </blockquote>
-
-<h4 id="2-3-2-onconfiguration-适配实操">2.3.2 onConfiguration()-适配实操<a href="#2-3-2-onconfiguration-适配实操" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="232-onconfiguration-适配实操">2.3.2 onConfiguration()-适配实操<a href="#232-onconfiguration-适配实操" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>先修改<code>AndroidManifest.xml</code>来标记需要触发<code>onConfigurationChanged()</code>回调的Activity，之后在页面创建时用变量记录当前设备状态(用于在状态变化时做对比用)。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">Configuration</span> <span class="n">mConfiguration</span><span class="o">;</span>
-<span class="n">mConfiguration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">(</span><span class="n">getResources</span><span class="o">().</span><span class="na">getConfiguration</span><span class="o">());</span></code></pre></div>
-<p>之后重写<code>onConfigurationChanged()</code>时用如下代码甄别回调原因是否为屏幕尺寸变化(可能因为业务需求导致onConfiguration()有多种回调理由，比如屏幕方向变化，所以需要做原因甄别)。</p>
+<span class="n">mConfiguration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">(</span><span class="n">getResources</span><span class="o">().</span><span class="na">getConfiguration</span><span class="o">());</span>
+</code></pre></div><p>之后重写<code>onConfigurationChanged()</code>时用如下代码甄别回调原因是否为屏幕尺寸变化(可能因为业务需求导致onConfiguration()有多种回调理由，比如屏幕方向变化，所以需要做原因甄别)。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
 <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onConfigurationChanged</span><span class="o">(</span><span class="n">Configuration</span> <span class="n">newConfig</span><span class="o">)</span> <span class="o">{</span>
  
@@ -271,82 +221,55 @@
             <span class="c1">//...
 </span><span class="c1"></span>        <span class="o">}</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
-<p>以上代码中<code>screenSize</code>的判断条件也可以用别的对比值，不同对比值对应不同的尺寸映射区间，具体映射区间可以查看源码中注释。</p>
-
+<span class="o">}</span>
+</code></pre></div><p>以上代码中<code>screenSize</code>的判断条件也可以用别的对比值，不同对比值对应不同的尺寸映射区间，具体映射区间可以查看源码中注释。</p>
 <h2 id="3-具体场景">3. 具体场景<a href="#3-具体场景" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>下面列举应用适配者们可能会遇到的几个场景(有些看似麻烦的适配问题通过分析与拆解成子问题，可能也会匹配到下列场景中的某一条)：</p>
-
 <ul>
 <li>查询当前设备类型是折叠屏设备还是直板设备(暂不扩展考虑其他特殊屏，因为卷轴屏没量产，LG Wing这类奇特的设备在内地使用量极少)</li>
 <li>查询当前是显示在展开/收起的折叠屏或者是直板屏上</li>
 <li>根据不同状态显示不同的页面布局方式</li>
 <li>监听折叠/展开发生时机</li>
 </ul>
-
-<h3 id="3-1-查询当前设备类型-折叠设备-非折叠设备">3.1 查询当前设备类型(折叠设备/非折叠设备)<a href="#3-1-查询当前设备类型-折叠设备-非折叠设备" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="31-查询当前设备类型折叠设备非折叠设备">3.1 查询当前设备类型(折叠设备/非折叠设备)<a href="#31-查询当前设备类型折叠设备非折叠设备" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>截止安卓11为止未看到提供给应用层判断设备类型的API，即暂无手段直接判断手机类别。</p>
-
 <blockquote>
 <p>可能有些开发者会想到些野路子，但都会有局限性，比如想要监听屏幕尺寸，一旦尺寸达到过大尺寸就判断自己运行在折叠屏上，可用户在折叠状态初次打开时应用就会因感知不到而执行直板手机的逻辑，且用户什么时候会在使用应用时展开屏幕也不可预知。</p>
 </blockquote>
-
-<h3 id="3-2-查询当前状态-展开折叠屏-收起折叠屏-直板屏">3.2 查询当前状态(展开折叠屏/收起折叠屏/直板屏)<a href="#3-2-查询当前状态-展开折叠屏-收起折叠屏-直板屏" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<p>在应用适配前我们要先将用户理解的概念映射成应用层概念来简化适配工作，所谓展开折叠屏、收起折叠屏、直板屏在应用而言只是尺寸不同的屏幕而已，所以这个问题的解决方向是怎么判断当前用于显示的屏幕是大尺寸或小尺寸，再结合客观现实中展开折叠屏相较于收起折叠屏和直板屏而言宽度明显更大，我们再把问题变形为判断当前显示屏幕的宽度是大还是小。<br />
+<h3 id="32-查询当前状态展开折叠屏收起折叠屏直板屏">3.2 查询当前状态(展开折叠屏/收起折叠屏/直板屏)<a href="#32-查询当前状态展开折叠屏收起折叠屏直板屏" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在应用适配前我们要先将用户理解的概念映射成应用层概念来简化适配工作，所谓展开折叠屏、收起折叠屏、直板屏在应用而言只是尺寸不同的屏幕而已，所以这个问题的解决方向是怎么判断当前用于显示的屏幕是大尺寸或小尺寸，再结合客观现实中展开折叠屏相较于收起折叠屏和直板屏而言宽度明显更大，我们再把问题变形为判断当前显示屏幕的宽度是大还是小。<br>
 因为我们只是要判断屏幕宽度的大小，所以我们可以手动设置几个尺寸档位来区分我们想要区分的屏幕类别，接下来可以参考前文所讲的<code>资源限定符-适配实操</code>段落来实现了。</p>
-
-<p><img src="/查询屏幕状态.jpg" alt="查询设备状态" /></p>
-
-<h3 id="3-3-根据不同状态显示不同的页面布局方式">3.3 根据不同状态显示不同的页面布局方式<a href="#3-3-根据不同状态显示不同的页面布局方式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<p>这个需求会用到上面提到过的<code>2. 适配手段</code>，主要以设计<code>富有弹性的静态布局</code>为主，再辅以<code>资源限定符</code>中配置多套资源。<br />
+<p><img src="/%E6%9F%A5%E8%AF%A2%E5%B1%8F%E5%B9%95%E7%8A%B6%E6%80%81.jpg" alt="查询设备状态"></p>
+<h3 id="33-根据不同状态显示不同的页面布局方式">3.3 根据不同状态显示不同的页面布局方式<a href="#33-根据不同状态显示不同的页面布局方式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>这个需求会用到上面提到过的<code>2. 适配手段</code>，主要以设计<code>富有弹性的静态布局</code>为主，再辅以<code>资源限定符</code>中配置多套资源。<br>
 虽然多套资源的方案比单套资源的弹性拉伸自由度更高，但成本也更高，而且在折叠屏手机这个类别上我个人也不推荐让太多页面在尺寸变化时发生布局的大变动，因为折叠行为发生前后页面的大改变会破坏用户体验时的连贯性。</p>
-
-<h3 id="3-4-监听折叠-展开发生时机">3.4 监听折叠/展开发生时机<a href="#3-4-监听折叠-展开发生时机" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="34-监听折叠展开发生时机">3.4 监听折叠/展开发生时机<a href="#34-监听折叠展开发生时机" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>这个需求因为前文所述的原因导致应用层没有API可以直接感知折叠屏的折叠行为，但可以把折叠概念映射成屏幕尺寸变化之后间接感知折叠行为，这方面的具体操作可以阅读上面的<code>2.3.2 onConfiguration()-适配实操</code>。</p>
-
 <h2 id="4-推荐适配方案">4. 推荐适配方案<a href="#4-推荐适配方案" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>本文的最后我想说下我调研多款海内外应用的折叠屏适配状况后的感想。</p>
-
-<h3 id="4-1-多页显示">4.1 多页显示<a href="#4-1-多页显示" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<p>在华为和三星的开发者文档(针对自家折叠屏设备的适配辅助文档)中都提到更大的显示面积是折叠屏设备的优势，所以充分利用这一特性，给用户显示更多的内容相比于单纯的拉伸控件尺寸要更好一些。<br />
+<h3 id="41-多页显示">4.1 多页显示<a href="#41-多页显示" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在华为和三星的开发者文档(针对自家折叠屏设备的适配辅助文档)中都提到更大的显示面积是折叠屏设备的优势，所以充分利用这一特性，给用户显示更多的内容相比于单纯的拉伸控件尺寸要更好一些。<br>
 华为、三星和<a href="4">谷歌开发者</a>对折叠屏给出的适配建议中都包含了一种方案是多页(可以用单Activity多Fragment实现)显示，这种方案在平板应用的适配中比较常见，因为折叠屏手机设备的展开态屏幕尺寸约等于一个小点的平板屏幕，所以多页方案同样适用。</p>
-
 <blockquote>
 <p>具体的多页实现可以查询平板适配方案材料，这里就不赘述了。</p>
 </blockquote>
-
-<h3 id="4-2-内容变形">4.2 内容变形<a href="#4-2-内容变形" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="42-内容变形">4.2 内容变形<a href="#42-内容变形" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>折叠屏手机设备的两个静态状态下屏幕呈现出两种尺寸，即折叠时与常规直板手机尺寸类似的小尺寸和展开状态时与平板类似的大尺寸，虽然可以将适配折叠屏手机的工作看作是适配一个直板手机和一个平板这两个任务来看待，但也不能完全独立地做这两件事，因为折叠屏手机是可以从两个状态中来回切换的，所以两个状态下的UI差异不宜太大。</p>
-
 <blockquote>
 <p>我个人就UI设计时的建议是先想好需要给用户提供哪些功能，再根据功能决定呈现哪些元素，再根据元素决定摆放位置和尺寸，所以折叠屏手机在展开与折叠态提供的功能和呈现的元素应该是一样的，但元素除了尺寸变化外，位置也是可以发生变化的。</p>
 </blockquote>
-
-<p>元素尺寸变化是APP适配中比较常见的行为，但很少有应用在适配时尝试<code>改变元素位置</code>是因为在过去的很长时间中手机屏幕的宽高比差异不大，所以仅靠控制元素尺寸基本能满足视觉和功能的需求。<br />
-但随着折叠屏以及未来可能出现的卷轴屏等各异的屏幕方案的出现，显示容器宽高比将会放飞自我，届时仅靠<code>修改元素尺寸</code>是难以满足适配要求的，这时适配思路就可以拓宽到<code>改变元素位置</code>的领域了。<br />
+<p>元素尺寸变化是APP适配中比较常见的行为，但很少有应用在适配时尝试<code>改变元素位置</code>是因为在过去的很长时间中手机屏幕的宽高比差异不大，所以仅靠控制元素尺寸基本能满足视觉和功能的需求。<br>
+但随着折叠屏以及未来可能出现的卷轴屏等各异的屏幕方案的出现，显示容器宽高比将会放飞自我，届时仅靠<code>修改元素尺寸</code>是难以满足适配要求的，这时适配思路就可以拓宽到<code>改变元素位置</code>的领域了。<br>
 在我看到的国内外应用中，大多数头部应用的观感还可以，但在展开的大屏显示时都是元素尺寸变化，没看到多页显示方案，不知是仅做了简单适配，还是没做特殊适配，其中油管APP的适配程度是比较领先的，且油管的适配方案中就使用了上述所说的<code>改变元素位置</code>的理念，以下是两张对比截图：</p>
-
-<p><img src="/油管开合屏对比.jpg" alt="油管开合屏对比" /></p>
-
-<p>注意上图中<code>上传的视频</code>区域，不仅列数会动态改变，列表中条目内元素的位置也会变化，但提供给用户的功能一样没少。<br />
+<p><img src="/%E6%B2%B9%E7%AE%A1%E5%BC%80%E5%90%88%E5%B1%8F%E5%AF%B9%E6%AF%94.jpg" alt="油管开合屏对比"></p>
+<p>注意上图中<code>上传的视频</code>区域，不仅列数会动态改变，列表中条目内元素的位置也会变化，但提供给用户的功能一样没少。<br>
 这种方案可以考虑通过配置资源限定符设置多套布局来实现，但是有两点要注意：</p>
-
 <ul>
 <li>布局改变前后内部元素的数量、类别、id不变，否则可能出现空指针问题</li>
 <li>项目中页面和操作逻辑耦合度要尽量低</li>
 </ul>
-
 <h2 id="附录">附录<a href="#附录" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
-<p><a href="https://developer.android.com/guide/topics/manifest/activity-element#config">官网-configChanges说明</a><br />
+<p><a href="https://developer.android.com/guide/topics/manifest/activity-element#config">官网-configChanges说明</a><br>
 <a href="2">官网-应用资源概览</a>
 <a href="https://developer.android.com/guide/topics/ui/foldables">官方-为可折叠设备构建应用</a></p>
 
@@ -358,6 +281,9 @@
 			</footer>
 		</article>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://leejunj.github.io/posts/skinmanager/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>SkinManager</span>
+			</a>
 		</div>
 		<div id="comments" class="thin">
 </div>
@@ -372,7 +298,7 @@
 
 
 
-	<script src="https://leejunj.github.io/js/bundle.min.490e43e5af6db5906f28afa49a4e16bf9f626b758e3fca92f146b870eb94bb37.js" integrity="sha256-SQ5D5a9ttZBvKK+kmk4Wv59ia3WOP8qS8Ua4cOuUuzc=" crossorigin="anonymous"></script>
+	<script src="https://leejunj.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
 	
 
 </body>

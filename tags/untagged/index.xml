@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>untagged on Hugo Hermit</title>
+    <link>https://leejunj.github.io/tags/untagged/</link>
+    <description>Recent content in untagged on Hugo Hermit</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 09 Mar 2021 13:14:40 +0800</lastBuildDate><atom:link href="https://leejunj.github.io/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SkinManager</title>
+      <link>https://leejunj.github.io/posts/skinmanager/</link>
+      <pubDate>Tue, 09 Mar 2021 13:14:40 +0800</pubDate>
+      
+      <guid>https://leejunj.github.io/posts/skinmanager/</guid>
+      <description>换肤组件-使用说明 1. 简述 顾名思义，换肤组件为工程提供元素变色能力，本质上是动态切换资源。
+可通过静态标记或动态标记方式针对需要变色元素进行变色。
+静态标记可直接在xml布局中指明需要参与变色的属性，如background\textColor\src。
+动态标记支持用代码处理变色行为，提供变色行为回调，可以在回调中执行自定义逻辑。
+ 换肤组件暂时只支持本地多套皮肤，要实现外部资源包引入只要扩展ResProvider部分即可。
+ 2. 使用 简单说需要进行
+引入换肤组件 使用前构建工具(引入皮肤包) 针对需要变色View做标记 随时进行变色 及时清理被释放的View   换肤组件由SkinManager类集中提供对外暴露功能的API，所以使用基本功能时只需要看这一个类即可。
+ 2.0 引入工程 换肤组件已经上传JCenter，可以通过Gradle轻松引入目标项目。
+//换肤模块 implementation &#39;com.leejunj:prism:1.0.1&#39; 2.1 构建工具、注册皮肤包 可以在自定义Application.onCreate()中做构建工具与注册皮肤包(假设皮肤包为固定后缀_skin1)行为。
+public class MyApplication extends Application { @Override public void onCreate() { super.onCreate(); SkinManager.getInstance().build(this); SkinManager.getInstance().registerSkin(new SkinTypeSuffix(&amp;#34;_skin1&amp;#34;)); //可以注册多套皮肤或一套  } } 除此之外，还要对需要控制的Activity设置setFactory()，可以选择在自己项目的基类Activity中处理，也可以利用Application监听Activity创建时机来统一处理，以下假设在基类Activity中处理。
+public class BaseActivity extends AppCompatActivity { @Override protected void onCreate(@Nullable Bundle savedInstanceState) { SkinManager.getInstance().markActivity(this); super.onCreate(savedInstanceState); } } 换肤机制的关键在于setFactory()，且这个自定义Factory又是独占的，即不可多次设置，所以如果多库需要使用setFactory()时，可以用SkinManager.onCreateView()做更细粒度的控制。
+@Override protected void onCreate(Bundle savedInstanceState) { getLayoutInflater().</description>
+    </item>
+    
+  </channel>
+</rss>
